@@ -6,19 +6,19 @@ public class BankAccount {
         System.out.println("Account Number: ");
         int acc_num = scanner.nextInt();
         System.out.println("Account Holder: ");
-        String acc_name = scanner.nextLine();
-//        System.out.println("Initial Balance: ");
-//        int acc_balance = scanner.nextInt();
+        String acc_name = reader.nextLine();
+        System.out.println("Initial Balance: ");
+        int acc_balance = scanner.nextInt();
 
         bank bank = new bank(acc_num, acc_name, 0);
         System.out.println("Deposit or Withdraw transaction?:");
         String deporwith = reader.nextLine();
 
-        bank.deposit(money);
+        bank.deposit(0);
             System.out.print("Input withdraw: ");
             double money = scanner.nextDouble();
             bank.withdraw(money);
-        }
+
     }
 }
 
@@ -36,10 +36,10 @@ class bank
 
     void deposit(double money){
         balance =+ money;
-        System.out.println("");
+        System.out.println("Balance is: " + balance);
     }
     void withdraw(double money){
         balance =- money;
-        System.out.println("");
+        System.out.println("Balance is: " + balance);
     }
 }
