@@ -9,8 +9,7 @@ public class GuessingGame {
 
         game game = new game(gameNum, guess, guessAmount);
 
-        System.out.println("Welcome to the game! You have 3 guesses to uncover the number I've picked from 1 to 10.");
-
+        System.out.println("\n\nWelcome to the game! You have 3 guesses to uncover the number I've picked from 1 to 10.");
         game.game();
     }
 }
@@ -30,7 +29,7 @@ class game {
     void game() {
         Scanner scan = new Scanner(System.in);
         if (guessAmount > 0){
-            System.out.println("What's your guess?: ");
+            System.out.println("\nWhat's your guess?: ");
             this.guess = scan.nextByte();
             guessAmount--;
           
