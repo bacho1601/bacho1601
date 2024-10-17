@@ -1,6 +1,6 @@
 import java.util.Scanner;
 public class BankAccount {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Scanner reader = new Scanner(System.in);
         System.out.print("Account Number: ");
@@ -9,37 +9,43 @@ public class BankAccount {
         String acc_name = reader.nextLine();
         System.out.print("Initial Balance: ");
         double acc_balance = scanner.nextDouble();
+        System.out.println("");
 
         bank bank = new bank(acc_num, acc_name, acc_balance);
 
-        for (int i = 1; i > 0; i++) {
-            System.out.println("Deposit or Withdraw transaction?:");
-            String deporwith = reader.nextLine();
+        for (int i = 2; i > 1; i++) {
+            System.out.print("(1) Deposit?\n(2) Withdraw?\n(3) Change info?\n(4) Display info?\n(5) Exit program\n-  ");
+            byte choice = reader.nextByte();
+            System.out.println("");
             double money = 0;
-            if (deporwith.equals("Deposit") || deporwith.equals("deposit")) {
-                System.out.print("Input deposit: ");
-                money = scanner.nextDouble();
-                bank.deposit(money);
-            } else if (deporwith.equals("Withdraw") || deporwith.equals("withdraw")) {
-                System.out.print("Input withdraw: ");
-                money = scanner.nextDouble();
-                bank.withdraw(money);
+            switch (choice) {
+                case 1:
+                    bank.deposit(money);
+                    break;
+                case 2:
+                    bank.withdraw(money);
+                    break;
+                case 3:
+                    bank.change();
+                    break;
+                case 4:
+                    bank.display();
+                    break;
+                case 5:
+                    i = 0;
             }
         }
-
-        double money = scanner.nextDouble();
-        bank.deposit(money);
-            bank.withdraw(money);
-        //}
     }
 }
 
 class bank
 {
     Scanner scan = new Scanner(System.in);
+    Scanner string = new Scanner(System.in);
     int acc_num;
     String acc_holder;
     double balance;
+    int failWith;
 
     public bank(int acc_num, String acc_holder, double balance){
         this.acc_num = acc_num;
@@ -48,31 +54,59 @@ class bank
     }
 
     void deposit(double money){
+        System.out.print("Input deposit amount: ");
+        money = scan.nextDouble();
         balance += money;
         System.out.println("Balance: " + balance);
+        System.out.println("");
     }
+
     void withdraw(double money){
-        balance -= money;
-        System.out.println("Balance: " + balance);
+        System.out.print("Input withdraw amount: ");
+        money = scan.nextDouble();
+        if (balance < money){
+            System.out.println("   ---    Error: Insufficient Balance, try again.");
+            failWith = 1;
+            withdraw(money);
+        } else {
+            balance -= money;
+            System.out.println("Balance: " + balance);
+            System.out.println("");
+        }
     }
+
     void display(){
+        System.out.println("---------------");
         System.out.println("Account Number: " + acc_num);
         System.out.println("Account Holder: " + acc_holder);
         System.out.println("Balance: " + balance);
+        System.out.println("---------------");
+        System.out.println("");
     }
+
     void change(){
-        System.out.println("What do you wish to change? \n Account number? \n Account holder \n Balance");
-        String ch = scan.nextLine();
+        System.out.print("What do you wish to change?\n(1) Account number\n(2) Account holder\n(3) Balance\n- ");
+        byte ch = scan.nextByte();
+        System.out.println("");
         switch (ch) {
-            case "Account Number":
+            case 1:
+                System.out.print("Input new Account Number: ");
                 acc_num = scan.nextInt();
-            case "Account Holder":
-                acc_holder = scan.nextLine();
-            case "Balance":
+                System.out.println("");
+                break;
+            case 2:
+                System.out.print("Input new Account Holder: ");
+                acc_holder = string.nextLine();
+                System.out.println("");
+                break;
+            case 3:
+                System.out.print("Type new Balance amount: ");
                 balance = scan.nextDouble();
+                System.out.println("");
+                break;
             default:
-
+                System.out.println("Invalid Choice");
+                System.out.println("");
         }
-
     }
 }
