@@ -1,0 +1,20 @@
+import java.util.Scanner;
+public class textReverser {
+    public static void main(String[] args) {
+        //scanner object
+        Scanner scan = new Scanner(System.in);
+        //call your method with user input.
+        String text = scan.nextLine();
+        reverseText.reverseMyText(text);
+    }
+}
+class reverseText{
+    public static void reverseMyText(String text){
+        int len = text.length()-1;
+        while (len>=0){
+            char character = text.charAt(len);
+            System.out.print(character);
+            len--;
+        }
+    }
+}
