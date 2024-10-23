@@ -23,10 +23,11 @@ public class VendingMachine {
                 default:
                     System.out.println("Error. Please type existing code.");
             }
-            System.out.println("---------\nTo prompt again, press enter. \n" +
+            System.out.println("---------\nTo prompt again, insert anything. \n" +
                                                 "To exit the program, type \"end\".");
             String a = scan.nextLine();
-            if (a.equals("end")){return;} else {System.out.println("Please press enter.");}
+            if (a.equals("end")){return;} 
+            else if (a.equals("\n")) {System.out.println("Please press enter.");}
         }
     }
 }
