@@ -11,7 +11,7 @@ public class BankAccount {
         double acc_balance = scanner.nextDouble();
         System.out.println("");
 
-        bank bank = new bank(acc_num, acc_name, acc_balance);
+     	bank bank = new bank(acc_num, acc_name, acc_balance);
 
         for (int i = 2; i > 1; i++) {
             System.out.print("(1) Deposit?\n(2) Withdraw?\n(3) Change info?\n(4) Display info?\n(5) Exit program\n-  ");
@@ -45,7 +45,6 @@ class bank
     int acc_num;
     String acc_holder;
     double balance;
-    int failWith;
 
     public bank(int acc_num, String acc_holder, double balance){
         this.acc_num = acc_num;
@@ -66,7 +65,6 @@ class bank
         money = scan.nextDouble();
         if (balance < money){
             System.out.println("   ---    Error: Insufficient Balance, try again.");
-            failWith = 1;
             withdraw(money);
         } else {
             balance -= money;
