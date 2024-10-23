@@ -86,25 +86,44 @@ class bank
         System.out.print("What do you wish to change?\n(1) Account number\n(2) Account holder\n(3) Balance\n- ");
         byte ch = scan.nextByte();
         System.out.println("");
-        switch (ch) {
+        boolean end = false;
+        do {
+            switch (ch) {
             case 1:
                 System.out.print("Input new Account Number: ");
-                acc_num = scan.nextInt();
+                try {
+                    acc_num = scan.nextInt();    
+                } catch (java.lang.Exception e) {
+                    System.out.println("Please type a number.");
+                    scan.nextLine();
+                    break;
+                }
                 System.out.println("");
+                end = true;
                 break;
             case 2:
                 System.out.print("Input new Account Holder: ");
                 acc_holder = string.nextLine();
                 System.out.println("");
+                end = true;
                 break;
             case 3:
                 System.out.print("Type new Balance amount: ");
-                balance = scan.nextDouble();
+                try {
+                    balance = scan.nextDouble();
+                } catch (java.lang.Exception e) {
+                    System.out.println("Please type a number.");
+                    scan.nextLine();
+                    break;
+                }
                 System.out.println("");
+                end = true;
                 break;
             default:
                 System.out.println("Invalid Choice");
                 System.out.println("");
-        }
+                end = true;
+            }            
+        } while (end == false);
     }
 }
