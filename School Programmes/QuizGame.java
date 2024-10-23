@@ -17,7 +17,7 @@ public class QuizGame {
                 }
                 Quiz quiz = new Quiz(chosenCategory, input);
                 quiz.game(chosenCategory, input);
-            } catch (java.util.InputMismatchException _) {
+            } catch (java.util.InputMismatchException e) {
                 System.out.println("Invalid category choice. Try again.");
                 scanner.nextLine();
             }
