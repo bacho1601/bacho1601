@@ -53,18 +53,40 @@ class bank
     }
 
     void deposit(double money){
-        System.out.print("Input deposit amount: ");
-        money = scan.nextDouble();
+        boolean error = false;
+        do {
+            error = false;
+            try {
+                System.out.print("Input deposit amount: ");
+                money = scan.nextDouble();    
+            } catch (java.lang.Exception e) {
+                System.out.println("Please type a number.");
+                error = true;
+                scan.nextLine();
+            }
+        } while (error); 
+       
         balance += money;
         System.out.println("Balance: " + balance);
         System.out.println("");
     }
 
     void withdraw(double money){
-        System.out.print("Input withdraw amount: ");
-        money = scan.nextDouble();
+        boolean error = false;
+        do {
+            error = false;
+            try {
+                System.out.print("Input withdraw amount: ");
+                money = scan.nextDouble();    
+            } catch (java.lang.Exception e) {
+                System.out.println("Please type a number.");
+                error = true;
+                scan.nextLine();
+            }
+        } while (error);
+        
         if (balance < money){
-            System.out.println("   ---    Error: Insufficient Balance, try again.");
+            System.out.println("---  Error: Insufficient Balance, try again.");
             withdraw(money);
         } else {
             balance -= money;
