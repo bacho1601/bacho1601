@@ -35,7 +35,16 @@ class Quiz {
     public Quiz(byte chosenCategory, String input) {
         this.chosenCategory = chosenCategory;
     }
+    void win() {
+        System.out.println("Congrats, you won!");
+        System.exit(0);
+    }
+    void lose() {
+        System.out.println("Sorry, you lost!");
+        System.exit(0);
+    }
 
+    
     void game(byte chosenCategory, String input) {
         switch (chosenCategory) {
             case 1:
@@ -56,10 +65,9 @@ class Quiz {
         input = scanner.nextLine();
         if (input.equalsIgnoreCase("The Antiproton") || input.equalsIgnoreCase("antiproton"))
         {
-            System.out.println("Congrats, you won!");
-            System.exit(0);
+            win();   
         } else {
-            System.out.println("Sorry, you lost!");
+            lose();
         }
     }
     void History()
@@ -70,10 +78,9 @@ class Quiz {
         if (input.equalsIgnoreCase("in 1453") || input.equalsIgnoreCase("year 1453")
                 || input.equalsIgnoreCase("the year 1453") || input.equalsIgnoreCase("1453"))
         {
-            System.out.println("Congrats, you won!");
-            System.exit(0);
+            win();
         } else {
-            System.out.println("Sorry, you lost!");
+            lose();
         }
     }
     void Sports()
@@ -84,10 +91,9 @@ class Quiz {
         input = scanner.nextLine();
         if (input.equalsIgnoreCase("an offside") || input.equalsIgnoreCase("offside"))
         {
-            System.out.println("Congrats, you won!");
-            System.exit(0);
+            win();
         } else {
-            System.out.println("Sorry, you lost!");
+            lose();
         }
     }
 }
