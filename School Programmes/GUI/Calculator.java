@@ -49,11 +49,26 @@ public class Main {
 
         addition.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                // impolement addition
+                // impelement addition
                 calculate('+', textBox1, textBox2, result);
+            }
+        });
+        subtr.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                // impelement subtraction
                 calculate('-', textBox1, textBox2, result);
-                calculate('/', textBox1, textBox2, result);
+            }
+        });
+        multiplic.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                // impelement multiplication
                 calculate('*', textBox1, textBox2, result);
+            }
+        });
+        div.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                // impelement division
+                calculate('/', textBox1, textBox2, result);
             }
         });
     }
@@ -70,13 +85,20 @@ public class Main {
         switch (operator) {
             case '+':
                 result.setText(String.valueOf(num1+num2));
+                break;
             case '-':
                 result.setText(String.valueOf(num1-num2));
+                break;
             case '/':
+                if(num2==0){
+                    result.setText("No diviso by 0 por favor");
+                    break;
+                }
                 result.setText(String.valueOf(num1/num2));
+                break;
             case '*':
                 result.setText(String.valueOf(num1*num2));
+                break;
         }
-        result.setText(String.valueOf(num1+num2));
     }
 }
