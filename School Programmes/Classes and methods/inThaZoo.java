@@ -1,6 +1,18 @@
 public class inThaZoo{
     public static void main(String[] args){
 
+        Staff guy1 = new Staff("Pesho", "Animal Watcher", "Savanna");
+        Staff guy2 = new Staff("Gosho", "Animal Watcher", "Jungle");
+        Staff guy3 = new Staff("Ilia", "Cage Cleaner", "Jungle");
+        Staff guy4 = new Staff("Aleks", "Animal Watcher", "Arctic");
+        Habitat savannah = new Habitat("Savannah", 500.0, 35.0, "", "");
+        Habitat rainforest = new Habitat("Rainforest", 300.0, 28.0, "", "");
+        Habitat aquarium = new Habitat("Aquarium", 200.0, 20.0, "", "");
+        Habitat aviary = new Habitat("Aviary", 150.0, 25.0, "", "");
+
+
+
+        System.out.println(Habitat.getAnimals());
     }
 }
 
@@ -40,6 +52,10 @@ class Habitat {
     void addAninal(Animal animal, Habitat habitat){
         habitat.animals = habitat.animals + ", " + animal.getAnimalName(animal);
     }
+
+    public String getAnimals(){
+        return animals;
+    }
 }
 
 class Zoo {
@@ -49,14 +65,20 @@ class Zoo {
     Animal a2;
     Animal a3;
     Animal a4;
-    Staff guy1 = new Staff("Pesho", "Animal Watcher", "Savanna");
-    Staff guy2 = new Staff("Gosho", "Animal Watcher", "Jungle");
-    Staff guy3 = new Staff("Ilia", "Cage Cleaner", "Jungle");
-    Staff guy4 = new Staff("Alekls", "Animal Watcher", "Arctic");
     Habitat savanna;
     Habitat arctic;
     Habitat jungle;
 
+    Zoo(Animal a1, Animal a2, Animal a3, Animal a4, Habitat savanna, Habitat arctic, Habitat jungle, Habitat aviary){
+        this.a1 = a1;
+        this.a2 = a2;
+        this.a3 = a2;
+        this.a4 = a2;
+        this.savanna = savanna;
+        this.arctic = arctic;
+        this.jungle = jungle;
+
+    }
     void assignEmployeeSavanna(Staff guy){
 
     }
@@ -96,6 +118,6 @@ class Staff {
     }
 
     void assignStaff(Habitat habitat){
-        switch 
+        //switch
     }
 }
