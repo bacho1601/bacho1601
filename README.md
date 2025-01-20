@@ -2,8 +2,8 @@
 
 - 🔭 I’m currently working on learning Java and navigating Github.
 - 🌱 I’m currently learning Java
-- 📫 Reach me <a href="https://thisiseda.netlify.app/contact" target="_blank">here</a>
-- 🐦 Follow me on twitter  <a href="https://twitter.com/iEdaYavuz" target="_blank">@iEdaYavuz</a>
+- 📫 Reach me <a href="https://balls.com" target="_blank">here</a>
+- 🐦 Follow me on twitter  <a href="https://" target="_blank">@iEdaYavuz</a>
 - 💁‍♀️ See my <a href="https://thisisEda.netlify.app" target="_blank">portfolio</a>
 - Pronouns: he/him
 
