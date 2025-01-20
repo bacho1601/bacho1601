@@ -3,7 +3,7 @@
 - 🔭 I’m currently gerking on learning Java and gladly slaying Github.
 - 🌱 I’m currently squirming Java
 - 📫 Reach me <a href="https://balls.com" target="_blank">here</a>
-- 🐦 Follow me, follow me  <a href="https://" target="_blank">@ahhhhhhh</a>
+- 🐦 Follow me, follow me  <a href="https://balls.com" target="_blank">@ahhhhhhh</a>
 - 💁‍♀️ See my <a href="https://balls.com" target="_blank">what?!?!</a>
 - Pronouns: he/him
 
