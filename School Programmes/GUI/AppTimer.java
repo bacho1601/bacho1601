@@ -92,7 +92,7 @@ public class AppTimer {
                 lapTimes.equals(lapTime);
                 lapCount++;
                 lapArea.append("Lap " + lapCount + ": " + lapTime + "\n");
-                lapArea.setCaretPosition(lapArea.getDocument().getLength());
+                lapArea.setCaretPosition(lapArea.getDocument().getLength()); //for auto-scroll in lap text area
             }
         });
 
