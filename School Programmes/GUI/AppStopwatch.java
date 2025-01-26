@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AppTimer {
+public class AppStopwatch {
     private static int timeInSec = 0;
     private static int timeInMillisec = 0;  // variable for milliseconds (which gets displayed)
     private static boolean isRunning = false;
