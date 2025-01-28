@@ -1,70 +1,56 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Random;
-import java.util.concurrent.Flow;
 
-public class GuessingGameGUI{
-    public static void main(String[] args){
+public class GuessingGameGUI {
+    public static void main(String[] args) {
+        JFrame window = new JFrame("Guessing Game");
+        window.setSize(300, 100);
+        window.setLayout(new FlowLayout());
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        int numberrand = randomnumber();
-        final int[] attempts = {10};
+        JLabel promptLabel = new JLabel("Enter your guess (1-100):");
+        JTextField inputBox = new JTextField(10);
+        JButton guessButton = new JButton("Guess");
+        JLabel resultLabel = new JLabel("");
 
-        JFrame window = new JFrame("Guessing game");
-        window.setSize(500,500);
-        window.setLayout(new GridLayout(4, 1));
+        window.add(promptLabel);
+        window.add(inputBox);
+        window.add(guessButton);
+        window.add(resultLabel);
 
-        JPanel paneloutput = new JPanel();
-        paneloutput.setLayout(null);
-        JLabel returnbox = new JLabel();
-        //JLabel.se
-        paneloutput.add(returnbox, BorderLayout.SOUTH);
+        int randomnum = randomnumber();
 
-        JPanel panelcheck = new JPanel(new FlowLayout());
-        JButton checkerinit = new JButton("Guess");
-        panelcheck.add(checkerinit);
-
-        JPanel panelinput = new JPanel(new FlowLayout());
-        JTextField inputbox = new JTextField(10);
-        JLabel attemptsshow = new JLabel("You have " + " attemps left");
-        panelinput.add(inputbox);
-        panelinput.add(attemptsshow);
-
-        window.add(paneloutput);
-        window.add(panelcheck);
-        window.add(panelinput);
-
-        checkerinit.addActionListener(new ActionListener(){
+        guessButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
-                int guessednum = Integer.parseInt(inputbox.getText());
-                if(attempts[0] > 0) {
-                    try {
-                        if(guessednum==numberrand) {
-                            returnbox.setText("Correct! You Guessed The Number!");
-                        } else if (guessednum<numberrand){
-                            returnbox.setText("Too low. Try again!");
-                            attempts[0]--;
-                            attemptsshow.setText("You have " + attempts[0] + " attemps left");
-                        } else {
-                            returnbox.setText("Too high. Try again!");
-                            attempts[0]--;
-                            attemptsshow.setText("You have " + attempts[0] +" attemps left");
-                        }
-                    } catch (NumberFormatException ee) {
-                        returnbox.setText("Please enter a valid number.");
-                    }
+                try {
+                    int guess = Integer.parseInt(inputBox.getText());
+                    String result = check(guess, randomnum);
+                    resultLabel.setText(result);
+                } catch (NumberFormatException ex) {
+                    resultLabel.setText("Please enter a valid number!");
                 }
-
             }
         });
 
         window.setVisible(true);
-
     }
-    public static int randomnumber (){
+
+    public static int randomnumber() {
         Random rand = new Random();
-        int numberrand = rand.nextInt(99)+1;
-        return numberrand;
+        return rand.nextInt(100) + 1;
+    }
+
+    public static String check(int guessedNum, int numberToGuess) {
+        if (guessedNum == numberToGuess) {
+            return "Correct! You guessed the number.";
+        } else if (guessedNum < numberToGuess) {
+            return "Too low! Try again.";
+        } else {
+            return "Too high! Try again.";
+        }
     }
 }
