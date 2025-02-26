@@ -43,22 +43,34 @@ public class Main{
         }
     }
     void borrowBook(Book[] books, String searchTitle, Scanner scanner){
+        
         int i = getBookInteger(books, searchTitle);
+        if(i==-1||i>books.length){
+            System.out.println("Please enter a valid part index or part of a title");
+            i = getBookInteger(books, searchTitle);
+        }
+        
         System.out.println("Enter the name of the borrower being registered:");
         String newBorrower = scanner.nextLine();
-        books[i].borrowBook();
+        books[i].borrowBook(newBorrower);
     }
     void returnBook(Book[] books, String searchTitle) {
+        
         int i = getBookInteger(books, searchTitle);
+        if(i==-1||i>books.length){
+            System.out.println("Please enter a valid part index or part of a title");
+            i = getBookInteger(books, searchTitle);
+        }
+        
         books[i].returnbook();
     }
     int findBookByTitle(Book[] books, String title) {
         for (int i = 0; i < books.length; i++) {
             if (books[i].title.contains(title)) {
-                return i+1;
+                return i;
             }
         }
-        return 0;
+        return -1;
     }
 }
 
