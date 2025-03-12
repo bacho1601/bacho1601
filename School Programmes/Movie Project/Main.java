@@ -19,7 +19,6 @@ public class Main {
         JPanel HomePanel = new JPanel();
         HomePanel.setLayout(new FlowLayout());
 
-
         JPanel MovieAdd = new JPanel();
         MovieAdd.setLayout(new FlowLayout());
         JButton homeButtMovie = new JButton("Home");
@@ -27,23 +26,19 @@ public class Main {
 
 
         // Add panels to the cardPanel (CardLayout container)
-        cardPanel.add(panel1, "Panel 1");
-        cardPanel.add(panel2, "Panel 2");
+        cardPanel.add(cardPanel, "Card Panel");
+        cardPanel.add(HomePanel, "Home Panel");
+        cardPanel.add(MovieAdd, "Movie Add Panel");
+
 
         // Add action listeners to buttons to switch between panels
         homeButtMovie.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel, "Panel 2");
+                cardLayout.show(cardPanel, "Home Panel");
             }
         });
 
-        nextButton2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel, "Panel 1");
-            }
-        });
 
     }
 }
