@@ -12,23 +12,30 @@ public class Main {
         frame.setVisible(true);
         frame.setLayout(new BorderLayout());
 
+        //Card Panel creation (the general panel in which everything else is)
         JPanel cardPanel = new JPanel();
         CardLayout cardLayout = new CardLayout();
         cardPanel.setLayout(cardLayout);
-
+        
+        //Home Panel creation
         JPanel HomePanel = new JPanel();
         HomePanel.setLayout(new FlowLayout());
-
-        JPanel MovieAdd = new JPanel();
-        MovieAdd.setLayout(new FlowLayout());
-        JButton homeButtMovie = new JButton("Home");
-
-
+        HomePanel.add(new JLabel("This is The Home Panel"));
+        //redirect button creation
+        JButton MovieAddHomeButt = new JButton("Go To Movie Add");
+        HomePanel.add(MovieAddHomeButt);
+        
+        //Movie Add Panel creation
+        JPanel MovieAddPanel = new JPanel();
+        MovieAddPanel.setLayout(new FlowLayout());
+        JButton homeButtMovie = new JButton("Go To Home");
+        //redirect button creation
+        MovieAddPanel.add(new JLabel("This is The Movie Add Panel"));
+        MovieAddPanel.add(homeButtMovie);
 
         // Add panels to the cardPanel (CardLayout container)
-        cardPanel.add(cardPanel, "Card Panel");
         cardPanel.add(HomePanel, "Home Panel");
-        cardPanel.add(MovieAdd, "Movie Add Panel");
+        cardPanel.add(MovieAddPanel, "Movie Add Panel");
 
 
         // Add action listeners to buttons to switch between panels
@@ -38,8 +45,18 @@ public class Main {
                 cardLayout.show(cardPanel, "Home Panel");
             }
         });
+        MovieAddHomeButt.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel, "Movie Add Panel");
+            }
+        });
 
+        // Add the cardPanel to the frame
+        frame.add(cardPanel);
 
+        // Make the frame visible
+        frame.setVisible(true);
     }
 }
 
@@ -50,6 +67,4 @@ class Movies{
         this.title = title;
         this.genre = genre;
     }
-
-
 }
