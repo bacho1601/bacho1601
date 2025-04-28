@@ -225,10 +225,9 @@ public class InventoryManagementSystemGUI extends JFrame implements ActionListen
                 outputArea.setText("No products added yet.");
             } else {
                 outputArea.setText(display);
-
+            }
         }
     }
-
     public static void main(String[] args) {
         new InventoryManagementSystem();
     }
