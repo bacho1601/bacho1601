@@ -62,13 +62,12 @@ class Inventory {
     }
 
     public String displayAllProducts() {
-        if (productCount == 0) {return "Inventory is empty."};
+        if (productCount == 0) {return "Inventory is empty.";}
         String displayed  = "";
         for (int i = 0; i < productCount; i++) {
-            displayed.concat(products[i].getDetails());
-            displayed.concat("\n");
+            displayed += products[i].getDetails() + "\n";
         }
-        return displayed.toString();
+        return displayed;
     }
 
     public int getProductCount() {
@@ -226,7 +225,7 @@ public class InventoryManagementSystemGUI extends JFrame implements ActionListen
                 outputArea.setText("No products added yet.");
             } else {
                 outputArea.setText(display);
-            }
+
         }
     }
 
@@ -378,9 +377,5 @@ class InventoryManagementSystem extends JFrame implements ActionListener {
             }
         }
 
-    }
-
-    public static void main(String[] args) {
-        new InventoryManagementSystem();
     }
 }
