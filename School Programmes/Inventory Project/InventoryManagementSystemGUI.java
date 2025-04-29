@@ -36,7 +36,7 @@ class Product {
     }
 }
 
-//inventory class for Array container of Products
+//inventory class for array container of Products
 class Inventory {
     private Product[] products = new Product[3];
     private int productCount = 0;
@@ -75,7 +75,6 @@ class Inventory {
     }
 }
 
-// GUI Class
 public class InventoryManagementSystemGUI extends JFrame implements ActionListener {
     private JTextField nameField, priceField, quantityField;
     private JTextArea outputArea;
