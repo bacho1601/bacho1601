@@ -42,7 +42,7 @@ public class MathStudyCase{
     }
     public static void FileWrite(String input) {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("/home/sgochkov26/Desktop/sample.txt", true));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("sample.txt", true));
             writer.write(input);
             writer.close();
         } catch (IOException e) {
