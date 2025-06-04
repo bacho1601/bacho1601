@@ -1,26 +1,24 @@
+// MusicPlaylistManager.java — Corrected, fully functional code
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.datatransfer.*;
-import java.awt.dnd.*;
-import java.awt.event.*;
 import java.io.*;
 import java.net.URI;
 import java.net.URLEncoder;
 import java.util.*;
 
-public class PlayListManagerVer1 {
+public class MusicPlaylistManager {
 
-    // Formats a duration (in minutes as a double) into "m:ss"
+    //formats a duration (in minutes as a double) into "m:ss"
     public static String formatDuration(double duration) {
         int minutes = (int) duration;
         int seconds = (int) Math.round((duration - minutes) * 60);
         return String.format("%d:%02d", minutes, seconds);
     }
 
-    // Parses a string like "9:25" or "9.25" into a double number of minutes
+    //parses a string like "9:25" or "9.25" into a double number of minutes
     static double parseDuration(String input) {
         input = input.trim().replace(',', '.');
         if (input.contains(":")) {
@@ -42,7 +40,7 @@ public class PlayListManagerVer1 {
         }
     }
 
-    // Represents a single song with its properties
+    //class for a song with its properties
     static class Song {
         String title, artist, album, genre;
         double duration;
@@ -71,7 +69,7 @@ public class PlayListManagerVer1 {
         }
     }
 
-    // Manages playlists: CRUD, file I/O, sorting
+    //manages playlists: CRUD, file I/O, sorting
     static class PlaylistManager {
         Map<String, ArrayList<Song>> playlists = new LinkedHashMap<>();
         String currentPlaylist = "Default";
@@ -155,20 +153,19 @@ public class PlayListManagerVer1 {
                     }
                 }
             } catch (IOException e) {
-                // No previous data, start fresh
+                //start fresh when no previous data
             }
         }
     }
 
-    // JLabel to display song count and total duration
+    //JLabel to display song count and total duration
     public static JLabel statsLabel;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             try {
-                // Apply Nimbus Look & Feel
                 UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-                // Adjust a few Nimbus colors for a modern dark accent look
+                //adjust some Nimbus colors for a better UI look
                 UIManager.put("nimbusBase", new Color(45, 45, 60));
                 UIManager.put("nimbusAlertYellow", new Color(248, 187, 0));
                 UIManager.put("nimbusDisabledText", new Color(100, 100, 100));
@@ -180,7 +177,7 @@ public class PlayListManagerVer1 {
                 UIManager.put("nimbusRed", new Color(169, 46, 34));
                 UIManager.put("nimbusSelectedText", Color.WHITE);
                 UIManager.put("nimbusSelectionBackground", new Color(70, 70, 90));
-                // Preserve default control and text colors
+                //default control and text colors
                 UIManager.put("control", UIManager.getColor("control"));
                 UIManager.put("text", UIManager.getColor("text"));
             } catch (Exception e) {
@@ -193,12 +190,12 @@ public class PlayListManagerVer1 {
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(1100, 600);
 
-            // Table model and JTable setup
+            //JTable and TableModel setup
             DefaultTableModel model = new DefaultTableModel(
                 new String[]{"Title", "Artist", "Album", "Genre", "Duration", "Favorite"}, 0
             );
             JTable table = new JTable(model);
-            // Disable cell editing (no double-click editing)
+            //disabling cell editing
             table.setDefaultEditor(Object.class, null);
             table.setAutoCreateRowSorter(true);
             table.setDragEnabled(true);
@@ -221,7 +218,7 @@ public class PlayListManagerVer1 {
                 }
             });
 
-            // Favorite column renderer
+            //renderer for fav colunm
             table.getColumn("Favorite").setPreferredWidth(60);
             DefaultTableCellRenderer favoriteRenderer = new DefaultTableCellRenderer() {
                 @Override
@@ -240,7 +237,7 @@ public class PlayListManagerVer1 {
             };
             table.getColumn("Favorite").setCellRenderer(favoriteRenderer);
 
-            // Playlist combo box
+            //playlist combo box
             JComboBox<String> playlistCombo = new JComboBox<>(
                 manager.playlists.keySet().toArray(new String[0])
             );
@@ -249,7 +246,7 @@ public class PlayListManagerVer1 {
                 reloadTable(manager, model);
             });
 
-            // New Playlist button
+            //for new playlist button
             JButton newPlaylistBtn = new JButton("➕ New Playlist");
             newPlaylistBtn.addActionListener(e -> {
                 String name = JOptionPane.showInputDialog("Enter playlist name:");
@@ -260,11 +257,11 @@ public class PlayListManagerVer1 {
                 }
             });
 
-            // Add Song button
+            //for add song button
             JButton add = new JButton("➕ Add Song");
             add.addActionListener(e -> showSongDialog(null, -1, manager, model));
 
-            // Edit Song button
+            //for edit song button
             JButton update = new JButton("✏️ Edit Song");
             update.addActionListener(e -> {
                 int row = table.getSelectedRow();
@@ -273,7 +270,7 @@ public class PlayListManagerVer1 {
                 }
             });
 
-            // Delete Song button
+            // for delete song button
             JButton delete = new JButton("🗑️ Delete Song");
             delete.addActionListener(e -> {
                 int row = table.getSelectedRow();
@@ -291,21 +288,21 @@ public class PlayListManagerVer1 {
                 }
             });
 
-            // Sort A-Z button
+            //for sort a-z button
             JButton sort = new JButton("🔤 Sort A-Z");
             sort.addActionListener(e -> {
                 manager.sortByTitle();
                 reloadTable(manager, model);
             });
 
-            // Sort by Favorite button
+            //for sort by favorite button
             JButton favSort = new JButton("⭐ Sort by Favorite");
             favSort.addActionListener(e -> {
                 manager.getSongs().sort((a, b) -> Boolean.compare(b.favorite, a.favorite));
                 reloadTable(manager, model);
             });
 
-            // Import button
+            //for import button
             JButton importBtn = new JButton("📂 Import");
             importBtn.addActionListener(e -> {
                 JFileChooser fileChooser = new JFileChooser();
@@ -317,14 +314,14 @@ public class PlayListManagerVer1 {
                 }
             });
 
-            // Export button
+            //for export button
             JButton exportBtn = new JButton("💾 Export");
             exportBtn.addActionListener(e -> {
                 manager.saveToFile();
                 JOptionPane.showMessageDialog(frame, "🎉 Export complete! File: songs_export.csv");
             });
 
-            // Search fields and buttons
+            //for search fields and buttons
             JTextField titleField = new JTextField(10);
             JTextField artistField = new JTextField(10);
             JTextField albumField = new JTextField(10);
@@ -355,7 +352,7 @@ public class PlayListManagerVer1 {
                 reloadTable(manager, model);
             });
 
-            // Top panel (playlist selector + new playlist + search fields)
+            //top panel (playlist selector & new playlist & search fields)
             JPanel topPanel = new JPanel();
             topPanel.add(newPlaylistBtn);
             topPanel.add(new JLabel("Playlist:"));
@@ -372,7 +369,7 @@ public class PlayListManagerVer1 {
             topPanel.add(resetBtn);
             frame.add(topPanel, BorderLayout.NORTH);
 
-            // Context menu (right-click on table row)
+            //context menu (right-click on table row)
             JPopupMenu contextMenu = new JPopupMenu();
             JMenuItem editItem = new JMenuItem("Edit");
             JMenuItem deleteItem = new JMenuItem("Delete");
@@ -402,10 +399,10 @@ public class PlayListManagerVer1 {
             contextMenu.add(youtubeItem);
             table.setComponentPopupMenu(contextMenu);
 
-            // Add table to center
+            //align table to center
             frame.add(new JScrollPane(table), BorderLayout.CENTER);
 
-            // Bottom panel (buttons + stats)
+            //bottom panel (buttons + stats)
             statsLabel = new JLabel("🎵 Songs: 0 | ⏱ Total Duration: 0:00");
             JPanel bottomPanel = new JPanel();
             bottomPanel.add(add);
@@ -418,14 +415,14 @@ public class PlayListManagerVer1 {
             bottomPanel.add(statsLabel);
             frame.add(bottomPanel, BorderLayout.SOUTH);
 
-            // Initial table load & stats update
+            //initial table load & stats update
             reloadTable(manager, model);
 
             frame.setVisible(true);
         });
     }
 
-    // Dialog for adding or updating a Song
+    //dialog for adding or updating a Song
     static void showSongDialog(Song existing, int index, PlaylistManager manager, DefaultTableModel model) {
         JTextField f1 = new JTextField(existing != null ? existing.title : "");
         JTextField f2 = new JTextField(existing != null ? existing.artist : "");
@@ -465,7 +462,7 @@ public class PlayListManagerVer1 {
         }
     }
 
-    // Reloads the JTable and updates the stats label
+    //reloads the JTable and updates the stats label
     static void reloadTable(PlaylistManager manager, DefaultTableModel model) {
         model.setRowCount(0);
         for (Song s : manager.getSongs()) {
