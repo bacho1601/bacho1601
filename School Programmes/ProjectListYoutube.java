@@ -1,4 +1,3 @@
-// MusicPlaylistManager.java — Corrected, fully functional code
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
