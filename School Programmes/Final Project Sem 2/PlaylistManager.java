@@ -1,4 +1,3 @@
-// MusicPlaylistManager.java — Corrected, fully functional code
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -270,7 +269,7 @@ public class MusicPlaylistManager {
                 }
             });
 
-            // for delete song button
+            //for delete song button
             JButton delete = new JButton("🗑️ Delete Song");
             delete.addActionListener(e -> {
                 int row = table.getSelectedRow();
