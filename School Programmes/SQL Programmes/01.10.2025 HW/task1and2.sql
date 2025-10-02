@@ -1,5 +1,7 @@
-create database orders_db;
+CREATE DATABASE IF NOT EXISTS orders_db;
 use orders_db;
+
+DROP TABLE IF EXISTS orders;
 
 create table orders (
 ord_no INT PRIMARY KEY,
@@ -23,6 +25,7 @@ INSERT INTO orders (ord_no, purch_amt, ord_date, customer_id, salesman_id) VALUE
 (70011, 75.29, '2012-08-17', 3003, 5007),
 (70013, 3045.6, '2012-04-25', 3002, 5001);
 
+-- task 1
 SELECT *
 FROM orders
 WHERE NOT (
@@ -30,3 +33,9 @@ WHERE NOT (
     OR customer_id > 3005
     OR purch_amt < 1000
 );
+
+-- task 2
+SELECT ord_no, purch_amt, ord_date, customer_id, salesman_id
+FROM orders
+WHERE purch_amt < 200
+   OR NOT (ord_date >= '2012-02-10' AND customer_id < 3009);
