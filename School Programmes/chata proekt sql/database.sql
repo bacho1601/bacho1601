@@ -1,0 +1,1 @@
+<content of database.sql file>
