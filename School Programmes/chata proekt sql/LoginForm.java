@@ -1,5 +1,1 @@
-// LoginForm.java
-
-public class LoginForm {
-    // Your code for the LoginForm class
-}
+// LoginForm.java content goes here

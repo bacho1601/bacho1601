@@ -1,1 +1,1 @@
-<content of database.sql file>
+-- database.sql content goes here
